@@ -1,13 +1,13 @@
 //use moment?
 var http = require('http');
 var url = require('url');
+var moment = require('moment');
+moment().format();
 var server = http.createServer(function (req, res) {
-    /*if (req.method != 'POST')  
-         return res.end('send me a POST\n');*/
     var requestdata = url.parse(req.url, true);
     
     var urlpath = decodeURIComponent(requestdata.pathname);
-    var date, unixtime, naturaldate;
+    var date, unixtime, naturaldate, momentparse;
     if (urlpath.match(/^\/$/)) {
         res.writeHead(200, {'content-type': 'text/plain'});
         res.end("Welcome to the timestamp microservice.  Provide a date, and \
@@ -15,25 +15,18 @@ var server = http.createServer(function (req, res) {
     }
     res.writeHead(200, {'Content-Type': 'application/json'});
     if (urlpath.match(/^\/-{0,1}[0-9]+$/)) {
-        unixtime = parseInt(urlpath.slice(1));
-        if (unixtime < 0 || unixtime > 8624674407370955) {
-            res.end(JSON.stringify({"error":"The time is not in a valid range for unix time"}));
-        }
-        naturaldate = new Date(unixtime).toDateString();
+        momentparse = moment(urlpath.slice(1), "X", 'en', true);
         
     }
     else {
-        date = new Date(Date.parse(urlpath.slice(1)));
-        if (isNaN(date)) {
-            res.end(JSON.stringify({"error":"invalid string"}));
-            return;
-        }
-        unixtime = date.getTime();
-        if (unixtime < 0 || unixtime > 8624674407370955) {
-            res.end(JSON.stringify({"error":"The time is not in a valid range for unix time"}));
-        }
-        naturaldate = date.toDateString()
+        momentparse = moment(urlpath.slice(1), "MMMM DD, Y", 'en', true);
     }
+    if (!momentparse.isValid()) {
+        res.end(JSON.stringify({"error":"Invalid input for the date."}));
+    }
+    unixtime = momentparse.unix();
+    naturaldate = momentparse.format("MMMM DD, Y");
+        
     res.end(JSON.stringify({"unixtime":unixtime,"natural":naturaldate}));
         /*
     else if (requestdata["pathname"] === "/api/parsetime") {
