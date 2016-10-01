@@ -1,0 +1,23 @@
+{
+  "name": "fcc-timestampmicroservice",
+  "version": "1.0.0",
+  "description": "Timestame Microservice project for free code camp",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eliotn/fcc-timestampmicroservice.git"
+  },
+  "keywords": [
+    "freeCodeCamp"
+  ],
+  "author": "Eliot Glairon",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/eliotn/fcc-timestampmicroservice/issues"
+  },
+  "homepage": "https://github.com/eliotn/fcc-timestampmicroservice#readme"
+}
