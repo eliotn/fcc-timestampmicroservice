@@ -20,7 +20,7 @@ var server = http.createServer(function (req, res) {
         "/[Month Name]%20[Day],%20[Year]'.</a></h3>" +
         "<p>For example if you request <a href='./" + todaysmomentformatted + "'>" +
         "'/" + encodeURI(todaysmomentformatted) + "'</a> " + 
-        "or  <a href='./" + encodeURI(todaysmomentformatted) + "'>'/" + todaysunixtime + "'</a>" +
+        "or  <a href='./" + todaysunixtime + "'>'/" + todaysunixtime + "'</a>" +
         "</p><p>You will get the following output: {" +
         "\"unixtime\":" + todaysunixtime + ",\"natural\":\"" + todaysmomentformatted + "\"}" +
         "</body></html>");
