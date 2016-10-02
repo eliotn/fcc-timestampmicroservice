@@ -13,7 +13,8 @@ var server = http.createServer(function (req, res) {
         var todaysmoment = moment(moment().format("MMMM D, Y"), "MMMM D, Y", 'en', true);
         var todaysmomentformatted = todaysmoment.format("MMMM D, Y");
         var todaysunixtime = todaysmoment.unix();
-        res.end("<html><head><title>Timestamp Microservice</title></head><body>" +
+        res.end("<html><head><title>Timestamp Microservice</title>" +
+        "<link href='https://s3-us-west-2.amazonaws.com/s.cdpn.io/46336/foundation-icons.css' rel='stylesheet' /></head><body>" +
         "<h1>Welcome to Eliot's timestamp microservice.</h1><h3>To use this serveice, put " +
         "a unix timestamp in the format " +
         "/[integer timestamp]' or a date in the format " +
@@ -23,6 +24,7 @@ var server = http.createServer(function (req, res) {
         "or  <a href='./" + todaysunixtime + "'>'/" + todaysunixtime + "'</a>" +
         "</p><p>You will get the following output: {" +
         "\"unixtime\":" + todaysunixtime + ",\"natural\":\"" + todaysmomentformatted + "\"}" +
+        '<center>Written and Coded by Eliot Glairon as part of <a href="https://www.freecodecamp.com/" target="_blank">freeCodeCamp</a>. <a href="https://www.linkedin.com/in/eliotglairon" target="_blank"><i class="fi-social-linkedin"></i></a><a href="https://github.com/eliotn" target="_blank"><i class="fi-social-github"></i></a><a href="https://www.twitter.com/eliotglairon"><i class="fi-social-twitter"></i></a></center>' +
         "</body></html>");
     }
     res.writeHead(200, {'Content-Type': 'application/json'});
