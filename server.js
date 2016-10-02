@@ -2,7 +2,6 @@
 var http = require('http');
 var url = require('url');
 var moment = require('moment');
-var express = require('express');
 moment().format();
 var server = http.createServer(function (req, res) {
     var requestdata = url.parse(req.url, true);
